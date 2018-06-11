@@ -136,6 +136,26 @@ public class UserDaoImpl implements UserDao {
         return (UserReport) query.uniqueResult();
     }
 
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserReport getUserIdByEmail(String email) {
+        StringBuilder strSelect = new StringBuilder();
+        strSelect.append(" SELECT ");
+        strSelect.append(" id AS id ");
+        strSelect.append(" FROM ");
+        strSelect.append(" tblUser ");
+        strSelect.append(" WHERE email = :email ");
+
+        NativeQuery query = sessionFactory.getCurrentSession().createNativeQuery(strSelect.toString());
+        query.setResultTransformer(Transformers.aliasToBean(UserReport.class));
+
+        query.setParameter("email", email, StandardBasicTypes.STRING);
+
+        query.addScalar("id", StandardBasicTypes.LONG);
+        return (UserReport) query.uniqueResult();
+    }
+
     @Override
     @Transactional
     public int updateUser(UserDto userDto) {

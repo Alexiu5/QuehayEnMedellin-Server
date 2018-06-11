@@ -17,8 +17,11 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public int userLogin (String username, String password) {
-        return userDao.userLogin (username, password);
+    public Object[] userLogin (String username, String password) {
+        return new Object[]{
+                userDao.userLogin (username, password),
+                userDao.getUserIdByEmail(username).getId()
+        };
     }
 
     @Override
