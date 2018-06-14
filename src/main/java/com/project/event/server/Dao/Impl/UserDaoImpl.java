@@ -109,6 +109,7 @@ public class UserDaoImpl implements UserDao {
         strSelect.append(" firstName AS firstName, ");
         strSelect.append(" lastName AS lastName, ");
         strSelect.append(" login AS login, ");
+        strSelect.append(" password AS password, ");
         strSelect.append(" email AS email, ");
         strSelect.append(" phone AS phone, ");
         strSelect.append(" active AS active, ");
@@ -127,6 +128,7 @@ public class UserDaoImpl implements UserDao {
         query.addScalar("firstName", StandardBasicTypes.STRING);
         query.addScalar("lastName", StandardBasicTypes.STRING);
         query.addScalar("login", StandardBasicTypes.STRING);
+        query.addScalar("password", StandardBasicTypes.STRING);
         query.addScalar("email", StandardBasicTypes.STRING);
         query.addScalar("phone", StandardBasicTypes.STRING);
         query.addScalar("active", StandardBasicTypes.BOOLEAN);
