@@ -25,6 +25,15 @@ public class EventControlller {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+
+    @GetMapping("/event.list.{idUser}")
+    @ResponseBody
+    public ResponseEntity getAllEventsByIdUsuario (@PathVariable("idUser") Long idUser, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("events", eventService.getAllEventsByIdUsuario(idUser));
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
     @PostMapping("/event.create")
     @ResponseBody
     public ResponseEntity createEvent (@RequestBody @Valid EventDto eventDto, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -49,6 +58,14 @@ public class EventControlller {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    @PostMapping("/event.validate.{id}")
+    @ResponseBody
+    public ResponseEntity validateEvent (@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HashMap<String, Object> result = new HashMap<>();
+        eventService.validateEvent(id);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
     @PostMapping("/event.remove.{id}")
     @ResponseBody
     public ResponseEntity removeEvent (@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -56,4 +73,5 @@ public class EventControlller {
         eventService.deleteEvent(id);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
+
 }

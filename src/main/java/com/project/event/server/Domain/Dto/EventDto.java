@@ -10,6 +10,7 @@ public class EventDto {
     private String longitude;
     private String latitude;
     private Date date;
+    private String hour;
     private String address;
     private boolean active;
     private Double cost;
@@ -68,6 +69,10 @@ public class EventDto {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public String getHour() {return hour;}
+
+    public void setHour(String hour) {this.hour = hour;}
 
     public String getAddress() {
         return address;

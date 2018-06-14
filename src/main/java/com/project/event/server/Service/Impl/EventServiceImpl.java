@@ -44,7 +44,23 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public List<EventReport> getAllEventsByIdUsuario(long idUser) {
+        List<EventReport> eventReports = new ArrayList<>();
+        List<EventReport> eventList = new ArrayList<>();
+        eventReports= eventDao.getAllEventsByIdUsuario(idUser);
+
+        for (EventReport eventReport : eventReports) {
+            eventReport.setUser(userDao.getUserById(eventReport.getUserId()));
+            eventReport.setEventType(eventTypeDao.getEventTypeById(eventReport.getEventTypeId()));
+            eventList.add(eventReport);
+        }
+
+        return eventList;
+    }
+
+    @Override
     public int createEvenInt(EventDto eventDto) {
+        eventDto.setActive(false);
         int eventId = eventDao.createEvenInt(eventDto);
 
         if (eventDto.getTagIds() != null && eventDto.getTagIds().size() > 0) {
@@ -62,6 +78,13 @@ public class EventServiceImpl implements EventService {
     @Override
     public int updateEvent(EventDto eventDto) {
         return eventDao.updateEvent(eventDto);
+    }
+
+    @Override
+    public void validateEvent(Long id) {
+        EventReport evn = eventDao.getEventById(id);
+        boolean value = !evn.isPublishedActive();
+        eventDao.validateEvent(id, value);
     }
 
     @Override
