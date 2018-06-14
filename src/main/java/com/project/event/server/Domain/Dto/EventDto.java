@@ -12,6 +12,7 @@ public class EventDto {
     private Date date;
     private String hour;
     private String address;
+    private String img;
     private boolean active;
     private Double cost;
     private Long idUser;
@@ -21,6 +22,8 @@ public class EventDto {
     private Date creationDate;
     private Date updateDate;
     private List<Long> tagIds;
+
+
 
     public Long getId() {
         return id;
@@ -81,6 +84,10 @@ public class EventDto {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getImg() {return img;}
+
+    public void setImg(String img) { this.img = img;}
 
     public boolean isActive() {
         return active;

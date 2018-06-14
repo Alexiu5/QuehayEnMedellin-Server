@@ -31,7 +31,9 @@ public class EventDaoImpl implements EventDao {
         strSelect.append(" longitude AS longitude, ");
         strSelect.append(" latitude AS latitude, ");
         strSelect.append(" date AS date, ");
+        strSelect.append(" hour AS hour, ");
         strSelect.append(" address AS address, ");
+        strSelect.append(" img AS img, ");
         strSelect.append(" active AS active, ");
         strSelect.append(" cost AS cost, ");
         strSelect.append(" creationDate AS creationDate, ");
@@ -52,7 +54,9 @@ public class EventDaoImpl implements EventDao {
         query.addScalar("longitude", StandardBasicTypes.STRING);
         query.addScalar("latitude", StandardBasicTypes.STRING);
         query.addScalar("date", StandardBasicTypes.DATE);
+        query.addScalar("hour", StandardBasicTypes.STRING);
         query.addScalar("address", StandardBasicTypes.STRING);
+        query.addScalar("img", StandardBasicTypes.STRING);
         query.addScalar("active", StandardBasicTypes.BOOLEAN);
         query.addScalar("cost", StandardBasicTypes.DOUBLE);
         query.addScalar("creationDate", StandardBasicTypes.DATE);
@@ -78,7 +82,9 @@ public class EventDaoImpl implements EventDao {
         strSelect.append(" longitude AS longitude, ");
         strSelect.append(" latitude AS latitude, ");
         strSelect.append(" date AS date, ");
+        strSelect.append(" hour AS hour, ");
         strSelect.append(" address AS address, ");
+        strSelect.append(" img AS img, ");
         strSelect.append(" active AS active, ");
         strSelect.append(" cost AS cost, ");
         strSelect.append(" creationDate AS creationDate, ");
@@ -102,7 +108,9 @@ public class EventDaoImpl implements EventDao {
         query.addScalar("longitude", StandardBasicTypes.STRING);
         query.addScalar("latitude", StandardBasicTypes.STRING);
         query.addScalar("date", StandardBasicTypes.DATE);
+        query.addScalar("hour", StandardBasicTypes.STRING);
         query.addScalar("address", StandardBasicTypes.STRING);
+        query.addScalar("img", StandardBasicTypes.STRING);
         query.addScalar("active", StandardBasicTypes.BOOLEAN);
         query.addScalar("cost", StandardBasicTypes.DOUBLE);
         query.addScalar("creationDate", StandardBasicTypes.DATE);
@@ -120,9 +128,9 @@ public class EventDaoImpl implements EventDao {
     public int createEvenInt(EventDto eventDto) {
         StringBuilder strQuery = new StringBuilder();
         strQuery.append(" INSERT INTO tblEvent ");
-        strQuery.append(" (title, description, longitude, latitude, date, hour, address, active, cost, idUser, idEventType, published, publishedDate) ");
+        strQuery.append(" (title, description, longitude, latitude, date, hour, address, img,active, cost, idUser, idEventType, published, publishedDate) ");
         strQuery.append(" VALUES ");
-        strQuery.append(" (:title, :description, :longitude, :latitude, :date, :hour, :address, :active, :cost, :userId, :eventTypeId, :published, :publishedDate) ");
+        strQuery.append(" (:title, :description, :longitude, :latitude, :date, :hour, :address, :img,:active, :cost, :userId, :eventTypeId, :published, :publishedDate) ");
 
         NativeQuery query = sessionFactory.getCurrentSession().createNativeQuery(strQuery.toString());
 
@@ -133,6 +141,7 @@ public class EventDaoImpl implements EventDao {
         query.setParameter("date", eventDto.getDate(), StandardBasicTypes.DATE);
         query.setParameter("hour", eventDto.getHour(), StandardBasicTypes.STRING);
         query.setParameter("address", eventDto.getAddress(), StandardBasicTypes.STRING);
+        query.setParameter("img", eventDto.getImg(), StandardBasicTypes.STRING);
         query.setParameter("active", eventDto.isActive(), StandardBasicTypes.BOOLEAN);
         query.setParameter("cost", eventDto.getCost(), StandardBasicTypes.DOUBLE);
         query.setParameter("userId", eventDto.getIdUser(), StandardBasicTypes.LONG);
@@ -161,7 +170,9 @@ public class EventDaoImpl implements EventDao {
         strSelect.append(" longitude AS longitude, ");
         strSelect.append(" latitude AS latitude, ");
         strSelect.append(" date AS date, ");
+        strSelect.append(" hour AS hour, ");
         strSelect.append(" address AS address, ");
+        strSelect.append(" img AS img, ");
         strSelect.append(" active AS active, ");
         strSelect.append(" cost AS cost, ");
         strSelect.append(" creationDate AS creationDate, ");
@@ -185,7 +196,9 @@ public class EventDaoImpl implements EventDao {
         query.addScalar("longitude", StandardBasicTypes.STRING);
         query.addScalar("latitude", StandardBasicTypes.STRING);
         query.addScalar("date", StandardBasicTypes.DATE);
+        query.addScalar("hour", StandardBasicTypes.STRING);
         query.addScalar("address", StandardBasicTypes.STRING);
+        query.addScalar("img", StandardBasicTypes.STRING);
         query.addScalar("active", StandardBasicTypes.BOOLEAN);
         query.addScalar("cost", StandardBasicTypes.DOUBLE);
         query.addScalar("creationDate", StandardBasicTypes.DATE);
@@ -211,6 +224,7 @@ public class EventDaoImpl implements EventDao {
         strQuery.append(" date = :date, ");
         strQuery.append(" hour = :hour, ");
         strQuery.append(" address = :address, ");
+        strQuery.append(" img= :img, ");
         strQuery.append(" active = :active, ");
         strQuery.append(" cost = :cost, ");
         strQuery.append(" idEventType = :eventTypeId ");
@@ -226,6 +240,7 @@ public class EventDaoImpl implements EventDao {
         query.setParameter("date", eventDto.getDate(), StandardBasicTypes.DATE);
         query.setParameter("hour", eventDto.getHour(), StandardBasicTypes.STRING);
         query.setParameter("address", eventDto.getAddress(), StandardBasicTypes.STRING);
+        query.setParameter("img", eventDto.getImg(), StandardBasicTypes.STRING);
         query.setParameter("active", eventDto.isActive(), StandardBasicTypes.BOOLEAN);
         query.setParameter("cost", eventDto.getCost(), StandardBasicTypes.DOUBLE);
         query.setParameter("eventTypeId", eventDto.getIdEventType(), StandardBasicTypes.LONG);

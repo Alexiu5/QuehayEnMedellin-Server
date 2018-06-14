@@ -9,7 +9,9 @@ public class EventReport {
     private String longitude;
     private String latitude;
     private Date date;
+    private String hour;
     private String address;
+    private String img;
     private boolean active;
     private Double cost;
     private Long userId;
@@ -69,12 +71,28 @@ public class EventReport {
         this.date = date;
     }
 
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
+    }
+
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public boolean isActive() {

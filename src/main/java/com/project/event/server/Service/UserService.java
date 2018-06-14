@@ -11,5 +11,6 @@ public interface UserService {
     int createUser (UserDto userDto);
     UserReport getUserById (Long userId);
     int updateUser (UserDto userDto);
+    void disableUser(Long userId);
     void deleteUser (Long userId);
 }

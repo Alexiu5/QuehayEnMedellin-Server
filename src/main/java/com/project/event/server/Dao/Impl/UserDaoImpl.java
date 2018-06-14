@@ -185,6 +185,27 @@ public class UserDaoImpl implements UserDao {
         return query.executeUpdate();
     }
 
+
+    @Override
+    @Transactional
+    public void disableUser(Long userId, Boolean value) {
+        StringBuilder strQuery = new StringBuilder();
+        strQuery.append(" UPDATE ");
+        strQuery.append(" tblUser ");
+        strQuery.append(" SET ");
+        strQuery.append(" active = :active ");
+        strQuery.append(" WHERE ");
+        strQuery.append(" id = :id ");
+
+        NativeQuery query = sessionFactory.getCurrentSession().createNativeQuery(strQuery.toString());
+
+
+        query.setParameter("active", value, StandardBasicTypes.BOOLEAN);
+        query.setParameter("id", userId, StandardBasicTypes.LONG);
+
+        query.executeUpdate();
+    }
+
     @Override
     @Transactional
     public void deleteUser(Long userId) {

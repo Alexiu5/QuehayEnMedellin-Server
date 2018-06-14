@@ -12,5 +12,6 @@ public interface UserDao {
     UserReport getUserById (Long userId);
     UserReport getUserIdByEmail(String email);
     int updateUser (UserDto userDto);
+    void disableUser(Long userId, Boolean value);
     void deleteUser (Long userId);
 }

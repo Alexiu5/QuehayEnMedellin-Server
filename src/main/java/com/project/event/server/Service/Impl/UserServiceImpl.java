@@ -46,6 +46,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void disableUser(Long userId) {
+        boolean value = !userDao.getUserById(userId).isActive();
+        userDao.disableUser(userId, value);
+    }
+
+    @Override
     public void deleteUser(Long userId) {
         userDao.deleteUser(userId);
     }

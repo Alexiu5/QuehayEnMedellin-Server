@@ -58,6 +58,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    @PostMapping("/user.disable.{id}")
+    @ResponseBody
+    public ResponseEntity disableUser (@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HashMap<String, Object> result = new HashMap<>();
+        userService.disableUser(id);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
+
     @PostMapping("/user.remove.{id}")
     @ResponseBody
     public ResponseEntity removeUser (@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) throws Exception {
